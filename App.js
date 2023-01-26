@@ -1,41 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Accelerometer } from 'expo-sensors';
+import { StyleSheet, Text, View, Image } from 'react-native';
+
+import ImageViewer from './components/ImageViewer';
+import Button from './components/Button';
+import AccelerometerViewer from './components/AccelerometerViewer';
 
 export default function App() {
-
-  const [{ x, y, z }, setData] = useState({
-  x: 0,
-  y: 0,
-  z: 0,
-  });
-  const [subscription, setSubscription] = useState(null);
-
-  const _slow = () => Accelerometer.setUpdateInterval(1000);
-  const _fast = () => Accelerometer.setUpdateInterval(16);
-
-  const _subscribe = () => {
-    setSubscription(
-      Accelerometer.addListener(setData)
-    );
-  };
-
-  const _unsubscribe = () => {
-    subscription && subscription.remove();
-    setSubscription(null);
-  };
-
-  useEffect(() => {
-    _subscribe();
-    return () => _unsubscribe();
-  }, []);
-
-
+ 
+  const PlaceholderImage = require('./assets/kettleballicon-flaticon.png');
 
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text style={styles.text}>Kettlefied Prototype App</Text>
+      <View style={styles.imageContainer}>
+        <ImageViewer placeholderImageSource={PlaceholderImage}/>
+      </View>
+      <AccelerometerViewer/>
+      <View style={styles.footer}>
+        <Button label="Choose a photo"/>
+      </View>
       <StatusBar style="auto" />
     </View>
   );
@@ -44,8 +27,26 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#25292e',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  text: {
+    color: "#fff"
+  },
+  image: {
+    //width: 20,
+    //height: 40,
+    borderRadius: 18,
+  },
+  imageContainer: {
+    //flex: 1/2,
+    margin: 12
+    //paddingTop: 58,
+  },
+  footer: {
+    flex: 1/8,
+    margin: 12,
+    alignItems: 'center',
+  }
 });
