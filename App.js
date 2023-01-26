@@ -13,7 +13,10 @@ export default function App() {
     <View style={styles.container}>
       <Text style={styles.text}>Kettlefied Prototype App</Text>
       <View style={styles.imageContainer}>
-        <ImageViewer placeholderImageSource={PlaceholderImage}/>
+
+        {/*https://www.flaticon.com/free-icon/kettlebell_8205418?term=kettlebell&page=1&position=9&origin=tag&related_id=8205418*/}
+        <ImageViewer placeholderImageSource={PlaceholderImage}/> 
+        
       </View>
       <AccelerometerViewer/>
       <View style={styles.footer}>
