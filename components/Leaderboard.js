@@ -1,10 +1,14 @@
-import {StyleSheet, Text, View, Pressable} from 'react-native'
-import React, { useState, useEffect } from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, View, Pressable, Text, Button } from 'react-native'
+import LeaderboardDisplay from '../components/LeaderboardDisplay';
 
-export default function LeaderboardDisplay({navigation}) {
-    
+export default function LeaderboardPage({navigation}) {
+    {/*https://www.flaticon.com/free-icon/user_1077114?term=user&page=1&position=3&origin=search&related_id=1077114*/}
+    //const PlaceholderImage = require('./assets/kettleballicon-flaticon.png');
+
     return (
-        <View >
+        <View style={styles.container}>
+            <Text style={styles.header}>You're in the Premier League!</Text>
             <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate("WorkoutDescription")}>
                 <Text style={styles.buttonText} >MVP Alert</Text>
             </Pressable>
@@ -14,18 +18,49 @@ export default function LeaderboardDisplay({navigation}) {
             <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate("WorkoutDescription")}>
                 <Text style={styles.buttonText} >Too Cool</Text>
             </Pressable>
+        <View style={styles.footer}>
+        </View>
+        <StatusBar style="auto" />
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    
-    accelerometerDataContainer: {
-        padding: 18,
-        borderRadius: 10,
-        backgroundColor: "#fff",
-        textDecorationColor: "black"
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
+    header: {
+        fontSize: 25,
+        color: "#000",
+        fontWeight: 'bold'
+    }, 
+    text: {
+      color: "#fff",
+      fontSize: 20,
+      fontStyle: 'bold'
+    },
+    image: {
+      //width: 20,
+      //height: 40,
+      borderRadius: 18,
+    },
+    imageContainer: {
+      //flex: 1/2,
+      margin: 12
+      //paddingTop: 58,
+    },
+    footer: {
+      flex: 1/8,
+      margin: 12,
+      alignItems: 'center',
+    },
+    Button: {
+      padding: 100
+    },
+
     buttonText: {
         color: "white",
         fontWeight: "bold",
@@ -52,5 +87,5 @@ const styles = StyleSheet.create({
         padding: 20,
         margin: 8
       }
-    
-})
+  });
+  

@@ -42,27 +42,31 @@ export default function AccelerometerViewer() {
             <Text style={style.text}>x: {Math.floor(x* 100) / 100}g</Text>
             <Text style={style.text}>y: {Math.floor(y* 100) / 100}g</Text>
             <Text style={style.text}>z: {Math.floor(z* 100) / 100}g</Text>
-            <Text style={style.text}>--------------------------------------</Text>
-            <Text style={style.text}>x = (Turning Phone Right and Left)</Text>
-            <Text style={style.text}>y = ()</Text>
-            <Text style={style.text}>z = (Tilt Phone Forward and Back)</Text>
-
         </View>
     )
 }
 
 const style = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
     accelerometerDataContainer: {
         padding: 18,
         borderRadius: 10,
-        backgroundColor: "#fff",
-        textDecorationColor: "black"
+        backgroundColor: "#5806f9",
+        textDecorationColor: "white",
+        fontWeight: "bold"
     },
     header: {
-       textDecorationColor: "red",
+        fontWeight: "bold",
+        color: '#fff'
+
     },
     text: {
-        textDecorationColor: "red",
+        color: '#fff'
     }
     
 })
