@@ -1,12 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
+import { NavigationContainer } from "@react-navigation/native"
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+
 import ImageViewer from './components/ImageViewer';
 import Button from './components/Button';
 import AccelerometerViewer from './components/AccelerometerViewer';
 
-export default function App() {
- 
+
+function Home() {
   const PlaceholderImage = require('./assets/kettleballicon-flaticon.png');
 
   return (
@@ -25,6 +28,20 @@ export default function App() {
       <StatusBar style="auto" />
     </View>
   );
+}
+
+const Stack = createNativeStackNavigator();
+
+export default function App() {
+ 
+  return(
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+  
 }
 
 const styles = StyleSheet.create({
