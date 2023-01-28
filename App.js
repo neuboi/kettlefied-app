@@ -16,11 +16,11 @@ export default function App() {
 
         {/*https://www.flaticon.com/free-icon/kettlebell_8205418?term=kettlebell&page=1&position=9&origin=tag&related_id=8205418*/}
         <ImageViewer placeholderImageSource={PlaceholderImage}/> 
-        
+
       </View>
       <AccelerometerViewer/>
       <View style={styles.footer}>
-        <Button label="Choose a photo"/>
+        <Button label="Test Button"/>
       </View>
       <StatusBar style="auto" />
     </View>

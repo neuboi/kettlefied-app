@@ -39,9 +39,14 @@ export default function AccelerometerViewer() {
     return (
         <View style={style.accelerometerDataContainer}>
             <Text style={style.header}>Accelerometer: (in gs where 1g = 9.81 m/s^2)</Text>
-            <Text style={style.text}>{Math.floor(x* 100) / 100}</Text>
-            <Text style={style.text}>{Math.floor(y* 100) / 100}</Text>
-            <Text style={style.text}>{Math.floor(z* 100) / 100}</Text>
+            <Text style={style.text}>x: {Math.floor(x* 100) / 100}g</Text>
+            <Text style={style.text}>y: {Math.floor(y* 100) / 100}g</Text>
+            <Text style={style.text}>z: {Math.floor(z* 100) / 100}g</Text>
+            <Text style={style.text}>--------------------------------------</Text>
+            <Text style={style.text}>x = (Turning Phone Right and Left)</Text>
+            <Text style={style.text}>y = ()</Text>
+            <Text style={style.text}>z = (Tilt Phone Forward and Back)</Text>
+
         </View>
     )
 }
