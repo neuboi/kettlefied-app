@@ -1,58 +1,71 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, Pressable, Text, Button } from 'react-native'
-import ImageViewer from '../components/ImageViewer';
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Audio } from "expo-av";
+// import { ProgressBar, ProgressBarAndroid } from "@react-native-community/progress-bar-android";
+import { ProgressBar, Colors } from 'react-native-paper';
 
-export default function WorkoutOngoingPage({navigation}) {
-  const PlaceholderImage = require('../assets/kettleballicon-flaticon.png');
+export default function WorkoutOngoingPage () {
 
-    return (
-        <View style={styles.container}>
-        <Text style={styles.header}>Workout: 20 Reps</Text>
-          <View style={styles.imageContainer}>
-            {/*https://www.flaticon.com/free-icon/kettlebell_8205418?term=kettlebell&page=1&position=9&origin=tag&related_id=8205418*/}
-            <ImageViewer placeholderImageSource={PlaceholderImage}/> 
-          </View>
-        <View style={styles.footer}>
-        </View>
-        <StatusBar style="auto" />
-        </View>
-    )
-}
+  const [progress, setProgress] = useState(0);
+  const [text, setText] = useState("In progress...");
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgress(prevProgress => prevProgress + 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (progress >= 10) {
+      playSound();
+      setText("Well done!");
+    }
+  }, [progress]);
+
+  const playSound = async () => {
+    // const soundObject = new Audio.Sound();
+    // try {
+    //   await soundObject.loadAsync(require("./assets/success.mp3"));
+    //   await soundObject.playAsync();
+    // } catch (error) {
+    //   console.log(error);
+    // }
+  };
+
+  return (
+    <View style={styles.container}>
+      
+      <Text style={styles.text}> {text} </Text>
+
+      <View style={[styles.progressBar, {width: progress}]} color="#ffffff" />
+
+      <Text style={styles.text}>{progress} seconds</Text>
+
+
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#f30c47',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    header: {
-      fontSize: 25,
-      color: "#fff",
-      fontWeight: 'bold'
-  }, 
-    text: {
-      color: "#fff",
-      fontSize: 20,
-      fontStyle: 'bold'
-    },
-    image: {
-      //width: 20,
-      //height: 40,
-      borderRadius: 18,
-    },
-    imageContainer: {
-      //flex: 1/2,
-      margin: 12
-      //paddingTop: 58,
-    },
-    footer: {
-      flex: 1/8,
-      margin: 12,
-      alignItems: 'center',
-    },
-    Button: {
-      padding: 100
-    }
-  });
-  
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#ADD8E6"
+  },
+  text: {
+    fontSize: 20,
+    marginBottom: 20
+  },
+  progressBar: {
+    height: 20,
+    flexDirection: "row",
+    
+    backgroundColor: 'white',
+    borderColor: '#000',
+    borderWidth: 2,
+    borderRadius: 5
+  }
+});

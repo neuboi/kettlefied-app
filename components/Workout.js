@@ -17,15 +17,19 @@ export default function WorkoutOptionsPage({navigation}) {
             <ImageViewer placeholderImageSource={PlaceholderImage}/> 
           </View>
           <AccelerometerViewer/>
-          <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate("WorkoutOngoing")}>
+
+            <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate("WorkoutOngoing")}>
                 <Text style={styles.buttonText} >Workout 1</Text>
             </Pressable>
+
             <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate("WorkoutOngoing")}>
                 <Text style={styles.buttonText} >Workout 2</Text>
             </Pressable>
+
             <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate("WorkoutOngoing")}>
                 <Text style={styles.buttonText} >Workout 3</Text>
             </Pressable>
+
           <View style={styles.footer}>
           </View>
           <StatusBar style="auto" />

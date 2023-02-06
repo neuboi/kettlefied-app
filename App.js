@@ -10,26 +10,40 @@ import StatsPage from './components/Stats';
 import WorkoutPage from './components/Workout';
 import WorkoutDescriptionPage from './components/WorkoutDescription'
 import WorkoutOngoingPage from './components/WorkoutOngoing'
+import Taskbar from './components/Taskbar';
+import Calendar from './components/Calendar';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
- 
+   
   return(
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen name="Home" component={HomePage}/>
-        <Stack.Screen name="Leaderboard" component={LeaderboardPage}/>
-        <Stack.Screen name="Stats" component={StatsPage}/>
-        <Stack.Screen name="WorkoutOptions" component={WorkoutPage}/>
-        <Stack.Screen name="WorkoutDescription" component={WorkoutDescriptionPage}/>
-        <Stack.Screen name="WorkoutOngoing" component={WorkoutOngoingPage}/>
+    <View style={{ flex: 1 }}>
 
-      </Stack.Navigator>
-    </NavigationContainer>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName='Home' screenOptions={{headerShown: false}}>
+          <Stack.Screen name="Home" component={HomePage}/>
+          <Stack.Screen name="Leaderboard" component={LeaderboardPage}/>
+          <Stack.Screen name="Stats" component={StatsPage}/>
+          <Stack.Screen name="Calendar" component={Calendar}/>
+
+          <Stack.Screen name="WorkoutOptions" component={WorkoutPage}/>
+          <Stack.Screen name="WorkoutDescription" component={WorkoutDescriptionPage}/>
+          <Stack.Screen name="WorkoutOngoing" component={WorkoutOngoingPage}/>
+        </Stack.Navigator>
+        {/* Footer */}
+        <View style={styles.footer}>
+          {/* <Text style={styles.footerText} onPress={() => navigation.navigate("WorkoutOptions")}>Go back to main menu</Text> */}
+            <Taskbar></Taskbar>
+        </View>
+      </NavigationContainer>
+    </View>
+
+    
+
   )
-  
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -49,12 +63,25 @@ const styles = StyleSheet.create({
   imageContainer: {
     margin: 12
   },
-  footer: {
-    flex: 1/8,
-    margin: 12,
-    alignItems: 'center',
-  },
+  // footer: {
+  //   flex: 1/8,
+  //   margin: 12,
+  //   alignItems: 'center',
+  // },
   Button: {
     padding: 100
-  }
+  },
+  footer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: 20,
+    alignItems: 'center',
+    backgroundColor: 'lightblue',
+  },
+  footerText: {
+    fontSize: 20,
+    color: '#fff',
+  },
 });

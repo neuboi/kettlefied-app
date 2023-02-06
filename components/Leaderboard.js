@@ -9,10 +9,10 @@ export default function LeaderboardPage({navigation}) {
     return (
         <View style={styles.container}>
             <Text style={styles.header}>You're in the Premier League!</Text>
-            <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate("WorkoutDescription")}>
+            <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate("Leaderboard")}>
                 <Text style={styles.buttonText} >MVP Alert</Text>
             </Pressable>
-            <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate("WorkoutDescription")}>
+            <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate("Workouts")}>
                 <Text style={styles.buttonText} >YOLO Status</Text>
             </Pressable>
             <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate("WorkoutDescription")}>
