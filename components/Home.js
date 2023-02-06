@@ -3,10 +3,13 @@ import { StyleSheet, View, Pressable,TouchableOpacity, Text, Button } from 'reac
 
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { A } from '@expo/html-elements';
 
 import ImageViewer from '../components/ImageViewer';
 import HomePageButton from './HomePageButton'
 import Taskbar from './Taskbar';
+
+import * as WebBrowser from 'expo-web-browser';
 
 export default function HomePage({navigation}) {
 
@@ -21,9 +24,10 @@ export default function HomePage({navigation}) {
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Stats")} />
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Calendar")}/>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("WorkoutOptions")}/>
-        <TouchableOpacity style={styles.button} />
-    
-        
+        <TouchableOpacity 
+        style={styles.button} 
+        onPress={() => WebBrowser.openBrowserAsync('https://docs.google.com/forms/d/e/1FAIpQLSd4CbLxCB4XL3V_LyeZP-r7XZXOHQoSRXnEhWKqb5lYyOHo2Q/viewform?usp=sf_link')}
+        />
       </View>
 
         // <View style={styles.container}>
