@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Audio } from "expo-av";
-// import { ProgressBar, ProgressBarAndroid } from "@react-native-community/progress-bar-android";
 import { ProgressBar, Colors } from 'react-native-paper';
+import { Accelerometer } from 'expo-sensors';
+import AccelerometerViewer from '../components/AccelerometerViewer';
+
+const timeLimit = 10;
+const progressBarSize = 100;
+const progressBarInnerIncrease = progressBarSize / timeLimit;
 
 export default function WorkoutOngoingPage () {
 
@@ -11,16 +16,22 @@ export default function WorkoutOngoingPage () {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setProgress(prevProgress => prevProgress + 1);
+      if (progress < progressBarSize) {
+        setProgress(prevProgress => prevProgress + progressBarInnerIncrease);
+      } else {
+        console.log("too large")
+      }
     }, 1000);
 
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
-    if (progress >= 10) {
+
+    if (progress == (progressBarSize)) {
       playSound();
       setText("Well done!");
+      clearInterval(interval)
     }
   }, [progress]);
 
@@ -36,36 +47,45 @@ export default function WorkoutOngoingPage () {
 
   return (
     <View style={styles.container}>
-      
       <Text style={styles.text}> {text} </Text>
-
-      <View style={[styles.progressBar, {width: progress}]} color="#ffffff" />
-
+      <View style={[styles.progressBarOuter, {width: progressBarSize}]} color="#ffffff">
+        <View style={[styles.progressBarInner, {width: progress}]} color="#ffffff" />
+      </View>
       <Text style={styles.text}>{progress} seconds</Text>
-
-
+      <View style={styles.container}>
+        <AccelerometerViewer></AccelerometerViewer>
+      </View>
     </View>
   );
+};
+
+const round = number => {
+  return Math.floor(number * 100) / 100;
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#ADD8E6"
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    backgroundColor: "white"
   },
   text: {
     fontSize: 20,
     marginBottom: 20
   },
-  progressBar: {
-    height: 20,
+  progressBarInner: {
+    height: 50,
     flexDirection: "row",
-    
-    backgroundColor: 'white',
+    backgroundColor: '#58CC02',
     borderColor: '#000',
-    borderWidth: 2,
+    borderRadius: 5
+  },
+  progressBarOuter: {
+    height: 50,
+    flexDirection: "row",
+    backgroundColor: 'grey',
+    borderColor: '#000',
     borderRadius: 5
   }
 });

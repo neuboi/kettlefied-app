@@ -1,14 +1,47 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, Pressable, Text, Button } from 'react-native'
+import { StyleSheet, View, Pressable, Text, Button, FlatList, TouchableOpacity } from 'react-native'
 import LeaderboardDisplay from '../components/LeaderboardDisplay';
+import { Ionicons } from '@expo/vector-icons';
+
+const data = [
+  { key: 'Button 1' },
+  { key: 'Button 2' },
+  { key: 'Button 3' },
+  { key: 'Button 4' }
+
+];
+
 
 export default function LeaderboardPage({navigation}) {
     {/*https://www.flaticon.com/free-icon/user_1077114?term=user&page=1&position=3&origin=search&related_id=1077114*/}
     //const PlaceholderImage = require('./assets/kettleballicon-flaticon.png');
 
+    const renderItem = ({ item }) => {
+      return (
+        <TouchableOpacity style={styles.button}>
+          <Ionicons name="md-settings" size={32} />
+          <View style={styles.textContainer}>
+            <Text style={styles.buttonText}>{item.key}</Text>
+            <Text style={styles.buttonText}>This is a brief description of each workout</Text>
+
+          </View>
+        </TouchableOpacity>
+
+      );
+    };
+
+
+
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>You're in the Premier League!</Text>
+            <FlatList
+              data={data}
+              renderItem={renderItem}
+              contentContainerStyle={styles.list}
+            >
+            </FlatList>
+
+            {/* <Text style={styles.header}>You're in the Premier League!</Text>
             <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate("Leaderboard")}>
                 <Text style={styles.buttonText} >MVP Alert</Text>
             </Pressable>
@@ -17,10 +50,8 @@ export default function LeaderboardPage({navigation}) {
             </Pressable>
             <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate("WorkoutDescription")}>
                 <Text style={styles.buttonText} >Too Cool</Text>
-            </Pressable>
-        <View style={styles.footer}>
-        </View>
-        <StatusBar style="auto" />
+            </Pressable> */}
+          <StatusBar style="auto" />
         </View>
     )
 }
@@ -86,6 +117,35 @@ const styles = StyleSheet.create({
         height: 80,
         padding: 20,
         margin: 8
-      }
+      },
+
+
+
+    button: {
+      width: 350,
+      height: 210,
+      marginVertical: 5,
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      paddingHorizontal: 25,
+      backgroundColor: '#ffffff',
+      borderColor: 'lightgrey', //'#FFC107',
+      borderRadius: 12,
+      borderWidth: 4,
+      flexDirection: 'row',
+      
+    },
+    textContainer: {
+      width: 220,
+      backgroundColor: '#fff',
+    },
+    buttonText: {
+      fontSize: 20,
+      color: 'grey'
+    },
+    list: {
+      paddingVertical: 100,
+      overflow: 'scroll',
+    },
   });
   

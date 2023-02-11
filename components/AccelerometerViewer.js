@@ -3,6 +3,10 @@ import { Accelerometer, DeviceMotionMeasurement } from 'expo-sensors';
 import React, { useState, useEffect } from 'react';
 import * as Location from 'expo-location';
 
+let rep = 0;
+let left = false;
+let right = false;
+
 export default function AccelerometerViewer() {
 
   // ACCELEROMETER --------------------------------
@@ -121,53 +125,83 @@ export default function AccelerometerViewer() {
     const [timeLeft, setTimeLeft] = useState(30);
   
     useEffect(() => {
-      let intervalId = 0;
-      let left = true;
-      let right = false;
-  
       const startAccelerometer = async () => {
+
         await Accelerometer.addListener(accelerometerData => {
           const { x, y, z } = accelerometerData;
-  
-          // Check if phone is tilted to the left
-          if (x < -0.5 && left && !right) {
-            setCounter(counter + 1);
-            left = false;
-            right = true;
-          }
-  
-          // Check if phone is tilted to the right
-          else if (x > 0.5 && right && !left) {
+          
+          /*
+
+            Kettlebell Swing Detection
+
+          */
+
+          // Check if phone is tilted towards the floor (Outward Swing)
+          if (z > 0.5 && !left) { // Check if phone is tilted upwards (Starting Position)
+            console.log("Up")
             setCounter(counter + 1);
             left = true;
             right = false;
+            rep += 0.5;
           }
+          if (z < -0.5 && !right) {
+            console.log("Dpwm")
+            setCounter(counter + 1);
+            left = false;
+            right = true;
+            rep += 0.5;
+
+          } 
+
+          /*
+
+            Kettlebell Russian Twist
+
+          */
+
+          // // Check if phone is tilted to the left
+          // if (x < -0.5) {
+          //   console.log("Right")
+          //   setCounter(counter + 1);
+          //   left = false;
+          //   right = true;
+          // } else if (x > 0.5) { // Check if phone is tilted to the right
+          //   console.log("Left")
+          //   setCounter(counter + 1);
+          //   left = true;
+          //   right = false;
+          // }
+
+          /*
+
+            Kettlebell Unknown Movement
+
+          */
+
+          // // Check if phone is tilted to the left
+          // if (y < -0.5) {
+          //   console.log("Dpwm")
+          //   setCounter(counter + 1);
+          //   left = false;
+          //   right = true;
+          // } else if (y > 0.5) { // Check if phone is tilted to the right
+          //   console.log("Up")
+          //   setCounter(counter + 1);
+          //   left = true;
+          //   right = false;
+          // }
         });
       };
-  
-      const startCountdown = () => {
-        intervalId = setInterval(() => {
-          setTimeLeft(timeLeft - 1);
-  
-          if (timeLeft === 0) {
-            clearInterval(intervalId);
-          }
-        }, 1000);
-      };
-  
       startAccelerometer();
-      startCountdown();
-  
       return () => {
           Accelerometer.removeAllListeners();
-          clearInterval(intervalId);
         };
       }, [counter, timeLeft]);
   
     return (
       <View style={style.accelerometerDataContainer}>
-        <Text>Counter: {counter}</Text>
-        <Text>Time Left: {timeLeft}</Text>
+        <Text style={style.text}>Accelerometer is Active</Text>
+        <Text>Rep: {rep}</Text>
       </View>
     );
 }
