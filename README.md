@@ -1,2 +1,3 @@
-# kettlefied-app
-ENGS 21 repo for Kettlefied project prototype app
+# Kettlefied App (ENGS 21)
+
+Get ready for exciting, gamified workouts! Kettlefied is an app + kettlebell attachment enabling users to work out at home and have fun! Our app features many gamified workouts for users to try!
