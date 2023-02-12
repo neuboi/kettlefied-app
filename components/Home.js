@@ -12,52 +12,35 @@ import Taskbar from './Taskbar';
 
 import * as WebBrowser from 'expo-web-browser';
 
-const data = [
-  { key: 'Button 1' },
-  { key: 'Button 2' },
-  { key: 'Button 3' },
-];
-
 export default function HomePage({navigation}) {
 
     {/*https://www.flaticon.com/free-icon/kettlebell_8205418?term=kettlebell&page=1&position=9&origin=tag&related_id=8205418*/}
     const PlaceholderImage = require('../assets/user_icon.png');
 
-    const renderItem = ({ item }) => {
-      return (
-        <TouchableOpacity style={styles.button}>
-          <Ionicons name="md-settings" size={32} />
-          <View style={styles.textContainer}>
-            <Text style={styles.buttonText}>{item.key}</Text>
-          </View>
-        </TouchableOpacity>
-
-      );
-    };
-
-
     return (
         <View style={styles.container}>
-          {/* <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Leaderboard")}/>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Stats")} />
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Calendar")}/>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("WorkoutOptions")}/>
-          <TouchableOpacity 
-            style={styles.button} 
-            onPress={() => WebBrowser.openBrowserAsync('https://docs.google.com/forms/d/e/1FAIpQLSd4CbLxCB4XL3V_LyeZP-r7XZXOHQoSRXnEhWKqb5lYyOHo2Q/viewform?usp=sf_link')}
-            /> */}
           <View>
-            <Ionicons name="md-people" size={128} />
-            <Text style={styles.headerText}>Stephen Adjei</Text>
-          </View>
-          <View>
-            <FlatList
-              data={data}
-              renderItem={renderItem}
-              contentContainerStyle={styles.list}
-            />
-            <TouchableOpacity onPress={() => WebBrowser.openBrowserAsync('https://docs.google.com/forms/d/e/1FAIpQLSd4CbLxCB4XL3V_LyeZP-r7XZXOHQoSRXnEhWKqb5lYyOHo2Q/viewform?usp=sf_link')}>
-                <Text style={styles.headerText}>Feedback</Text>
+            <View style={styles.profile}>
+              <Ionicons name="md-people" size={128} />
+              <Text style={styles.headerText}>Welcome Stephen!</Text>
+            </View>
+            <TouchableOpacity style={styles.button}>
+              <Ionicons name="md-settings" size={32} />
+              <View style={styles.textContainer}>
+                <Text style={styles.buttonText}>My Feed</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}>
+              <Ionicons name="md-settings" size={32} />
+              <View style={styles.textContainer}>
+                <Text style={styles.buttonText}>My Stats</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}>
+              <Ionicons name="md-settings" size={32} />
+              <View style={styles.textContainer}>
+                <Text style={styles.buttonText}>Most Recent Workout</Text>
+              </View>
             </TouchableOpacity>
           </View>
         </View>
@@ -69,10 +52,8 @@ export default function HomePage({navigation}) {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      alignItems: "center",
-      justifyContent: "center",
-      alignContent: "center",
-      backgroundColor: "#fff"
+      backgroundColor: '#fff',
+      alignItems: 'center',
     },
     button: {
       width: 350,
@@ -109,7 +90,6 @@ const styles = StyleSheet.create({
       color: 'grey'
     },
     list: {
-      padding: 20,
       height: 400
     },
     headerText: {
@@ -121,5 +101,11 @@ const styles = StyleSheet.create({
       width: 220,
       backgroundColor: '#fff',
       
+    },
+    profile: {
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingVertical: 20
     }
   });

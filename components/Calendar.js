@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import StreakCounter from './StreakCounter';
 
 const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -22,7 +21,6 @@ export default function Calendar() {
                 </TouchableOpacity>
             ))}
         </View>
-        <StreakCounter></StreakCounter>
     </View>
   );
 };
@@ -31,16 +29,19 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     justifyContent: 'space-between',
+    paddingVertical: 20
   },
   container_two: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   cell: {
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
+    marginHorizontal: 5,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: 'grey',
+    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -4,10 +4,10 @@ import LeaderboardDisplay from '../components/LeaderboardDisplay';
 import { Ionicons } from '@expo/vector-icons';
 
 const data = [
-  { key: 'Button 1' },
-  { key: 'Button 2' },
-  { key: 'Button 3' },
-  { key: 'Button 4' }
+  { key: 'Button 1', desc: 'This is a brief description of each workout' },
+  { key: 'Button 2', desc: 'This is a brief description of each workout' },
+  { key: 'Button 3', desc: 'This is a brief description of each workout' },
+  { key: 'Button 4', desc: 'This is a brief description of each workout' }
 
 ];
 
@@ -22,7 +22,7 @@ export default function LeaderboardPage({navigation}) {
           <Ionicons name="md-settings" size={32} />
           <View style={styles.textContainer}>
             <Text style={styles.buttonText}>{item.key}</Text>
-            <Text style={styles.buttonText}>This is a brief description of each workout</Text>
+            <Text style={styles.buttonText}>{item.desc}</Text>
 
           </View>
         </TouchableOpacity>
@@ -30,29 +30,18 @@ export default function LeaderboardPage({navigation}) {
       );
     };
 
-
-
     return (
-        <View style={styles.container}>
-            <FlatList
-              data={data}
-              renderItem={renderItem}
-              contentContainerStyle={styles.list}
-            >
-            </FlatList>
-
-            {/* <Text style={styles.header}>You're in the Premier League!</Text>
-            <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate("Leaderboard")}>
-                <Text style={styles.buttonText} >MVP Alert</Text>
-            </Pressable>
-            <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate("Workouts")}>
-                <Text style={styles.buttonText} >YOLO Status</Text>
-            </Pressable>
-            <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate("WorkoutDescription")}>
-                <Text style={styles.buttonText} >Too Cool</Text>
-            </Pressable> */}
-          <StatusBar style="auto" />
+      <View style={styles.container}>
+        <Text style={styles.headerText}>All KettleFied Workouts</Text>
+        <FlatList
+          data={data}
+          renderItem={renderItem}
+          contentContainerStyle={styles.list}
+        />
+        <View style={styles.space}>
+          <Text></Text>
         </View>
+      </View>
     )
 }
 
@@ -120,32 +109,41 @@ const styles = StyleSheet.create({
       },
 
 
-
-    button: {
-      width: 350,
-      height: 210,
-      marginVertical: 5,
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      paddingHorizontal: 25,
-      backgroundColor: '#ffffff',
-      borderColor: 'lightgrey', //'#FFC107',
-      borderRadius: 12,
-      borderWidth: 4,
-      flexDirection: 'row',
+      headerText: {
+        color: 'black',
+        fontWeight: 'bold',
+        fontSize: 23,
+        paddingVertical: 30
+      },
+      button: {
+        width: 350,
+        height: 310,
+        marginVertical: 5,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: 25,
+        backgroundColor: '#ffffff',
+        borderColor: 'lightgrey', //'#FFC107',
+        borderRadius: 12,
+        borderWidth: 4,
+        flexDirection: 'row',
+        
+      },
+      textContainer: {
+        width: 220,
+        backgroundColor: '#fff',
+      },
+      buttonText: {
+        fontSize: 20,
+        color: 'grey'
+      },
       
-    },
-    textContainer: {
-      width: 220,
-      backgroundColor: '#fff',
-    },
-    buttonText: {
-      fontSize: 20,
-      color: 'grey'
-    },
-    list: {
-      paddingVertical: 100,
-      overflow: 'scroll',
-    },
+      list: {
+        paddingVertical: 5,
+        overflow: 'scroll',
+      },
+      space: {
+        paddingVertical: 30,
+      }
   });
   

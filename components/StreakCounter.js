@@ -19,7 +19,7 @@ export default function StreakCounter() {
 
   return (
     <View>
-      <Text>App opened {streak} times</Text>
+      <Text>You've opened this app {streak} times!</Text>
     </View>
   );
 };

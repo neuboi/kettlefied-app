@@ -11,8 +11,8 @@ export default function Header() {
 
     return (
         <View style={styles.header}>
-            <Text style={styles.headerText}>YOLO Status</Text>
-            <TouchableOpacity style={styles.headerButton} onPress={() => navigation.navigate('Home')}>
+            <Text style={styles.headerText}>KettleFied | YOLO Status</Text>
+            <TouchableOpacity style={styles.headerButton} onPress={() => navigation.navigate('About')}>
                 <Ionicons name="md-settings" size={32} />
             </TouchableOpacity>
         </View>
@@ -43,8 +43,12 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignContent: 'space-between'
+    justifyContent: 'space-between',
+    alignContent: 'space-between',
+    flex: 1,
+    paddingTop: 40
+
+    
   }
 });
 

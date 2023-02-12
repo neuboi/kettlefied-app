@@ -1,29 +1,108 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, Pressable, Text, Button } from 'react-native'
-import ImageViewer from '../components/ImageViewer';
+import { StyleSheet, View, Pressable, Text, FlatList, TouchableOpacity, Button } from 'react-native'
+import { Ionicons } from '@expo/vector-icons';
 
+import ImageViewer from '../components/ImageViewer';
+import StreakCounter from '../components/StreakCounter';
+import Calendar from '../components/Calendar'
+
+const data = [
+  { key: 'Kettlebell Swing', desc: 'Youve done this workout the most!' },
+  { key: 'Mon Feb 13', desc: 'You worked out for the longest time on this day!' },
+  { key: '1 Hour and 30 Minutes', desc: 'This is the longest youve worked out so far!' },
+  { key: '17 Friends', desc: 'Youve shared this app with 30 Friends!' }
+
+];
 
 export default function StatsPage({navigation}) {
+
+    const renderItem = ({ item }) => {
+      return (
+        <TouchableOpacity style={styles.button}>
+          <View style={styles.textContainer}>
+            <Text style={styles.buttonHeader}>{item.key}</Text>
+            <Text style={styles.buttonText}>{item.desc}</Text>
+
+          </View>
+        </TouchableOpacity>
+
+      );
+    };
+
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>Here are your Stats!</Text>
-                <View style={styles.buttonContainer}>
-                    <Text style={styles.buttonText} >Stat 1</Text>
-                </View>
-                <View style={styles.buttonContainer}>
-                    <Text style={styles.buttonText} >Stat 2</Text>
-                </View>
-                <View style={styles.buttonContainer}>
-                    <Text style={styles.buttonText} >Stat 3</Text>
-                </View>
-            <View style={styles.footer}>
+
+          <View style={styles.container}>
+            <View style={styles.statsHeader}>
+              <Text style={styles.headerText}>You're doing great, Stephen!</Text>
+              <StreakCounter></StreakCounter>
+              <Calendar></Calendar>
             </View>
-            <StatusBar style="auto" />
+            
+            <FlatList
+              data={data}
+              renderItem={renderItem}
+              contentContainerStyle={styles.list}
+            />
+            <View style={styles.space}>
+              <Text></Text>
+            </View>
+          </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+
+  statsHeader: {
+    paddingVertical: 30,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  headerText: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 23,
+    paddingTop: 30
+  },
+  button: {
+    width: 350,
+    height: 210,
+    marginVertical: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 25,
+    backgroundColor: '#fff',
+    borderColor: 'lightgrey', //'#FFC107',
+    borderRadius: 40,
+    borderWidth: 4,
+    flexDirection: 'row',
+    
+  },
+  textContainer: {
+    width: 220,
+    backgroundColor: '#fff',
+  },
+  buttonHeader: {
+    fontSize: 25,
+    color: 'black',
+    fontWeight: 'bold'
+  },
+  buttonText: {
+    fontSize: 20,
+    color: 'grey'
+  },
+  
+  list: {
+    paddingVertical: 5,
+    overflow: 'scroll',
+  },
+  space: {
+    paddingVertical: 30,
+  },
+
+
     container: {
       flex: 1,
       backgroundColor: '#fff',
@@ -31,7 +110,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
     },
     text: {
-      color: "#fff",
+      color: "#000",
       fontSize: 20,
       fontStyle: 'bold'
     },
@@ -62,12 +141,6 @@ const styles = StyleSheet.create({
       color: "#fff",
       fontSize: 20
     },
-    buttonText: {
-        color: "#fff",
-        alignItems: 'center',
-        justifyContent: 'center',
-        alignSelf: 'center'
-      },
     imageContainer: {
       //flex: 1/2,
       margin: 12

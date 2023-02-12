@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { useFonts } from 'expo-font';
 
 import HomePage from './components/Home';
 import LeaderboardPage from './components/Leaderboard';
@@ -14,10 +15,14 @@ import WorkoutOngoingPage from './components/WorkoutOngoing'
 import Taskbar from './components/Taskbar';
 import Header from './components/Header';
 import Calendar from './components/Calendar';
+import AboutPage from './components/About';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  // const [fontsLoaded] = useFonts({
+  //   'Inter-Black': require('assets/PLANE___.TTF'),
+  // });
    
   return(
     <View style={{ flex: 1 }}>
@@ -37,6 +42,9 @@ export default function App() {
           <Stack.Screen name="WorkoutOptions" component={WorkoutPage}/>
           <Stack.Screen name="WorkoutDescription" component={WorkoutDescriptionPage}/>
           <Stack.Screen name="WorkoutOngoing" component={WorkoutOngoingPage}/>
+
+          <Stack.Screen name="About" component={AboutPage}/>
+
         </Stack.Navigator>
 
         {/* Footer */}
