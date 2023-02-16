@@ -3,7 +3,7 @@
     "name": "kettlefied-app",
     "slug": "kettlefied-app",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "landscape",
     "icon": "./assets/kettlefied_icon.png",
     "userInterfaceStyle": "light",
     "splash": {

@@ -32,13 +32,14 @@ export default function StatsPage({navigation}) {
     return (
         <View style={styles.container}>
 
-          <View style={styles.container}>
+          <View style={styles.halfView}>
             <View style={styles.statsHeader}>
               <Text style={styles.headerText}>You're doing great, Stephen!</Text>
               <StreakCounter></StreakCounter>
               <Calendar></Calendar>
             </View>
-            
+          </View>
+          <View style={styles.halfView}>
             <FlatList
               data={data}
               renderItem={renderItem}
@@ -53,7 +54,17 @@ export default function StatsPage({navigation}) {
 }
 
 const styles = StyleSheet.create({
-
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  halfView: {
+    marginHorizontal: 20,
+    marginVertical: 25
+  },
   statsHeader: {
     paddingVertical: 30,
     flexDirection: 'column',
@@ -101,14 +112,6 @@ const styles = StyleSheet.create({
   space: {
     paddingVertical: 30,
   },
-
-
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
     text: {
       color: "#000",
       fontSize: 20,

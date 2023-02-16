@@ -1,13 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Pressable, Text, Button, FlatList, TouchableOpacity } from 'react-native'
-import LeaderboardDisplay from '../components/LeaderboardDisplay';
 import { Ionicons } from '@expo/vector-icons';
 
 const data = [
-  { key: 'Button 1', desc: 'This is a brief description of each workout' },
-  { key: 'Button 2', desc: 'This is a brief description of each workout' },
-  { key: 'Button 3', desc: 'This is a brief description of each workout' },
-  { key: 'Button 4', desc: 'This is a brief description of each workout' }
+  { key: 'Button 1', desc: 'This is a brief description of each workout', workout: '' },
+  { key: 'Button 2', desc: 'This is a brief description of each workout', workout: '' },
+  { key: 'Button 3', desc: 'This is a brief description of each workout', workout: '' },
+  { key: 'Button 4', desc: 'This is a brief description of each workout', workout: '' }
 
 ];
 
@@ -17,8 +16,9 @@ export default function LeaderboardPage({navigation}) {
     //const PlaceholderImage = require('./assets/kettleballicon-flaticon.png');
 
     const renderItem = ({ item }) => {
+      const n = item.workout
       return (
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate(n)}>
           <Ionicons name="md-settings" size={32} />
           <View style={styles.textContainer}>
             <Text style={styles.buttonText}>{item.key}</Text>
@@ -32,14 +32,18 @@ export default function LeaderboardPage({navigation}) {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.headerText}>All KettleFied Workouts</Text>
-        <FlatList
-          data={data}
-          renderItem={renderItem}
-          contentContainerStyle={styles.list}
-        />
-        <View style={styles.space}>
-          <Text></Text>
+        <View style={styles.halfView}>
+          <Text style={styles.headerText}>All KettleFied Workouts</Text>
+        </View>
+        <View style={styles.halfView}>
+          <FlatList
+            data={data}
+            renderItem={renderItem}
+            contentContainerStyle={styles.list}
+          />
+          <View style={styles.space}>
+            <Text></Text>
+          </View>
         </View>
       </View>
     )
@@ -47,10 +51,15 @@ export default function LeaderboardPage({navigation}) {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      flexDirection: 'row',
+      justifyContent: 'center',
+    },
+    halfView: {
+      marginHorizontal: 20,
+      marginVertical: 25
     },
     header: {
         fontSize: 25,
@@ -117,7 +126,7 @@ const styles = StyleSheet.create({
       },
       button: {
         width: 350,
-        height: 310,
+        height: 210,
         marginVertical: 5,
         alignItems: 'center',
         justifyContent: 'space-between',

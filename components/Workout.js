@@ -2,12 +2,11 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Pressable, Text, FlatList, TouchableOpacity, Button } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 
-import AccelerometerViewer from '../components/AccelerometerViewer';
 import ImageViewer from '../components/ImageViewer';
 
 const data = [
-  { key: 'Kettlebell Swing'},
-  { key: 'Workout 2'},
+  { key: 'Kettlebell Swing', workout: 'WorkoutOngoing'},
+  { key: 'Workout 2', workout: 'WorkoutOngoing'},
 
 ];
 
@@ -16,8 +15,9 @@ export default function WorkoutOptionsPage({navigation}) {
     const PlaceholderImage = require('../assets/kettleballicon-flaticon.png');
 
     const renderItem = ({ item }) => {
+      const n = item.workout
       return (
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("WorkoutOngoing")}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate(n)}>
           <View style={styles.textContainer}>
             <Text style={styles.buttonText}>{item.key}</Text>
           </View>
@@ -28,19 +28,23 @@ export default function WorkoutOptionsPage({navigation}) {
 
     return (
         <View style={styles.container}>
-          <TouchableOpacity style={styles.beginWorkout}>
-            <View style={styles.buttonCenter}>
-              <Text style={styles.topText}>Let's get ready to work out!</Text>
+          <View style={styles.halfView}>
+            <TouchableOpacity style={styles.beginWorkout}>
+              <View style={styles.buttonCenter}>
+                <Text style={styles.topText}>Let's get ready to work out!</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.halfView}>
+            <Text style={styles.headerText}>KettleFied Workouts</Text>
+            <FlatList
+              data={data}
+              renderItem={renderItem}
+              contentContainerStyle={styles.list}
+            />
+            <View style={styles.space}>
+              <Text></Text>
             </View>
-          </TouchableOpacity>
-          <Text style={styles.headerText}>KettleFied Workouts</Text>
-          <FlatList
-            data={data}
-            renderItem={renderItem}
-            contentContainerStyle={styles.list}
-          />
-          <View style={styles.space}>
-            <Text></Text>
           </View>
           {/* <View>
               <View>
@@ -60,6 +64,17 @@ export default function WorkoutOptionsPage({navigation}) {
 }
 
 const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      flexDirection: 'row',
+      justifyContent: 'center',
+    },
+    halfView: {
+      marginHorizontal: 20,
+      marginVertical: 25
+    },
     buttonContainer: {
       alignItems: 'center',
       justifyContent: 'center',
@@ -137,14 +152,6 @@ const styles = StyleSheet.create({
     },
     space: {
       paddingVertical: 30,
-    },
-
-
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
     },
     image: {
       borderRadius: 18,

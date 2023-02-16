@@ -43,6 +43,12 @@ export default function Taskbar() {
         <Ionicons name="md-heart" size={32} />
       </TouchableOpacity>
 
+      <TouchableOpacity
+        style={styles.taskbarButton}
+        onPress={() => navigation.navigate('About')}
+      >
+        <Ionicons name="md-settings" size={32} />
+      </TouchableOpacity>
 
     </View>
   );
@@ -52,12 +58,12 @@ const styles = StyleSheet.create({
   taskbarContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    height: 40,
   },
   taskbarButton: {
     alignItems: 'space-between',
     justifyContent: 'flex-start',
-    marginHorizontal: 30
+    marginHorizontal: 60,
+    marginTop: -5
   },
   taskbarButtonText: {
     color: '#000',

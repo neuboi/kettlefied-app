@@ -1,6 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, TouchableOpacity, Pressable, Text, Button } from 'react-native'
-import ImageViewer from '../components/ImageViewer';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -10,16 +9,18 @@ export default function AboutPage({navigation}) {
     return (
         <View style={styles.container}>
             
-            <View>
+            <View style={styles.halfView}>
                 <View style={styles.infoContainer}>
-                  <Text style={styles.headerText}>Kettlefied App v1.0.0</Text>
-                  <Text style={styles.buttonText}>Get ready for exciting, gamified workouts! Kettlefied is an app + kettlebell attachment enabling users to work out at home and have fun! Our app features many gamified workouts for users to try!</Text>
-                  <TouchableOpacity style={styles.buttonCenter} onPress={() => WebBrowser.openBrowserAsync('https://docs.google.com/forms/d/e/1FAIpQLSd4CbLxCB4XL3V_LyeZP-r7XZXOHQoSRXnEhWKqb5lYyOHo2Q/viewform?usp=sf_link')}>
-                      <Text style={styles.buttonText}>Give Feedback!</Text>
-                  </TouchableOpacity>
+                  <Text style={styles.headerText}>Kettlefied App v1.1.0</Text>
                   <Text style={{color: 'grey', padding: 20}}>🏋️ Created by the Kettlefied Team!</Text>
                 </View>
-
+            </View>
+            <View>
+              <View style={styles.halfView}>
+                <TouchableOpacity style={styles.buttonCenter} onPress={() => WebBrowser.openBrowserAsync('https://docs.google.com/forms/d/e/1FAIpQLSd4CbLxCB4XL3V_LyeZP-r7XZXOHQoSRXnEhWKqb5lYyOHo2Q/viewform?usp=sf_link')}>
+                    <Text style={styles.buttonText}>Give Feedback!</Text>
+                </TouchableOpacity>
+              </View>
             </View>
             
 
@@ -32,7 +33,12 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#fff',
       alignItems: 'center',
+      flexDirection: 'row',
       justifyContent: 'center',
+    },
+    halfView: {
+      marginHorizontal: 20,
+      marginVertical: 25
     },
     text: {
       color: "#fff",
@@ -60,7 +66,7 @@ const styles = StyleSheet.create({
         
       },
       infoContainer: {
-        padding: 20,
+        padding: 10,
         marginVertical: 5,
         alignItems: 'center',
         justifyContent: 'center',
@@ -84,7 +90,7 @@ const styles = StyleSheet.create({
         
       },
       textContainer: {
-        width: 220,
+        width: 120,
         backgroundColor: '#fff',
         
       },

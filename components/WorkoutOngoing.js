@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Audio } from "expo-av";
 import { ProgressBar, Colors } from 'react-native-paper';
 import { Accelerometer } from 'expo-sensors';
-import AccelerometerViewer from '../components/AccelerometerViewer';
 
 import ConfettiCannon from 'react-native-confetti-cannon';
 
@@ -103,6 +102,7 @@ export default function WorkoutOngoingPage () {
             rep += 0.5;
           } 
         } else if (workoutNumber == 1) {
+
           /*
 
             Kettlebell Russian Twist
@@ -121,6 +121,7 @@ export default function WorkoutOngoingPage () {
             right = false;
           }
         } else if (workoutNumber == 2) {
+
           /*
 
             Kettlebell Unknown Movement
@@ -164,12 +165,6 @@ export default function WorkoutOngoingPage () {
             </Text>
           </View>
         </View>
-        {/* <View style={styles.container}>
-          <View style={style.accelerometerDataContainer}>
-            <Text style={style.text}>Accelerometer is Active</Text>
-            <Text>Rep: {rep}</Text>
-          </View>
-        </View> */}
         {shoot ? (
           <ConfettiCannon count={200} origin={{ x: -10, y: 0 }} />
         ) : null}

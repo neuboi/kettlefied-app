@@ -13,7 +13,6 @@ import WorkoutPage from './components/Workout';
 import WorkoutDescriptionPage from './components/WorkoutDescription'
 import WorkoutOngoingPage from './components/WorkoutOngoing'
 import Taskbar from './components/Taskbar';
-import Header from './components/Header';
 import Calendar from './components/Calendar';
 import AboutPage from './components/About';
 
@@ -29,9 +28,9 @@ export default function App() {
       <NavigationContainer>
 
         {/* Header */}
-        <View style={styles.header}>
+        {/* <View style={styles.header}>
           <Header></Header>
-        </View>
+        </View> */}
 
         <Stack.Navigator initialRouteName='Home' screenOptions={{headerShown: false}}>
           <Stack.Screen name="Home" component={HomePage}/>
